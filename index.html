@@ -5,91 +5,284 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Earnova 🚀</title>
 <style>
-*{box-sizing:border-box}body{margin:0;font-family:Arial,"Noto Sans Bengali",sans-serif;background:#f4f7f8;color:#14213d}
-header{background:linear-gradient(135deg,#079669,#14b87b);color:#fff;padding:28px 20px 70px;text-align:center}
-header h1{margin:0;font-size:38px}header p{margin:8px 0 0;font-size:17px}
-.app{max-width:760px;margin:-38px auto 30px;padding:0 14px}.card{background:#fff;border-radius:20px;padding:20px;margin-bottom:16px;box-shadow:0 5px 20px #00000010}
-.balance{display:flex;justify-content:space-between;align-items:center;gap:15px}.balance strong{font-size:30px;color:#078b61}
-.badge{background:#e8fff6;color:#087c59;padding:8px 12px;border-radius:20px;font-weight:700}
-.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.stat{background:#f7faf9;padding:15px;border-radius:15px}.stat b{display:block;font-size:22px;margin-top:5px}
-h2{margin:0 0 15px;font-size:22px}.task,.ad,.level{border:1px solid #e5ece9;border-radius:15px;padding:15px;margin:10px 0}
-.row{display:flex;justify-content:space-between;align-items:center;gap:12px}.muted{color:#68737d;font-size:14px}
-button{border:0;border-radius:12px;padding:11px 16px;background:#078b61;color:#fff;font-weight:700;font-size:15px;cursor:pointer}
-button:disabled{background:#b8c3bf;cursor:not-allowed}.secondary{background:#eaf7f2;color:#087c59}
-input,select{width:100%;padding:13px;border:1px solid #d7dfdc;border-radius:12px;font-size:16px;margin:7px 0 12px}
-nav{position:sticky;bottom:0;background:#fff;border-top:1px solid #ddd;display:flex;justify-content:space-around;padding:10px;z-index:5}
-nav button{background:transparent;color:#44515b;padding:8px}.section{display:none}.section.active{display:block}
-@media(max-width:520px){.grid{grid-template-columns:1fr 1fr}.balance{align-items:flex-start;flex-direction:column}}
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,"Noto Sans Bengali",sans-serif;background:#080a12;color:#eef2ff}
+header{background:linear-gradient(135deg,#10152b,#17102b);padding:28px 18px 75px;text-align:center}
+header h1{margin:0;font-size:36px;background:linear-gradient(90deg,#00e5ff,#ff3cac,#ffd166);-webkit-background-clip:text;color:transparent}
+header p{margin:8px 0 0;color:#b9c1d9}
+.app{max-width:760px;margin:-42px auto 85px;padding:0 14px}
+.card{background:#111522;border:1px solid #252b3d;border-radius:20px;padding:18px;margin-bottom:14px;box-shadow:0 10px 30px #0005}
+.balance{display:flex;justify-content:space-between;align-items:center;gap:15px}
+.balance strong{font-size:30px;color:#35e0b0}
+.badge{background:#241b3c;color:#ffd166;padding:7px 11px;border-radius:20px;font-weight:700}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.stat{background:#171c2b;padding:14px;border-radius:15px}
+.stat b{display:block;font-size:21px;margin-top:5px}
+h2{margin:0 0 14px;font-size:21px}
+.row{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.muted{color:#98a2bb;font-size:14px}
+button{border:0;border-radius:12px;padding:11px 15px;background:linear-gradient(90deg,#00b894,#00cec9);color:#07120f;font-weight:800;font-size:14px}
+button:disabled{opacity:.55}
+.secondary{background:#252c40;color:#e8edff}
+.level{border:1px solid #2b3247;border-radius:16px;padding:15px;margin:10px 0;background:#141927}
+.level.vip{border-color:#6c4cc7;box-shadow:0 0 20px #6c4cc722}
+.vipname{font-size:18px;font-weight:800;color:#ffd166}
+.rate{color:#35e0b0;font-weight:800}
+input,select{width:100%;padding:13px;border:1px solid #30374c;background:#0d111c;color:#fff;border-radius:12px;font-size:16px;margin:7px 0 12px}
+nav{position:fixed;left:0;right:0;bottom:0;background:#0e121d;border-top:1px solid #2b3141;display:flex;justify-content:space-around;padding:9px 6px;z-index:10}
+nav button{background:transparent;color:#b9c1d9;padding:8px 9px}
+nav button.active{color:#35e0b0}
+.section{display:none}.section.active{display:block}
+.loader{position:fixed;inset:0;background:#080a12;display:flex;align-items:center;justify-content:center;z-index:99;transition:.35s}
+.loader.hide{opacity:0;visibility:hidden}
+.loaderbox{text-align:center}
+.logo{font-size:70px;filter:drop-shadow(0 0 18px #ff2ca8)}
+.loading{margin-top:15px;letter-spacing:5px;font-weight:900;background:linear-gradient(90deg,#00e5ff,#ff3cac,#ffd166);-webkit-background-clip:text;color:transparent}
+.spinner{width:48px;height:48px;border:4px solid #30364a;border-top-color:#00e5ff;border-right-color:#ff3cac;border-radius:50%;margin:18px auto 0;animation:spin 1s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.profile-head{display:flex;align-items:center;gap:14px}
+.avatar{width:62px;height:62px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,#00e5ff,#ff3cac);font-size:28px;font-weight:900}
+.item{padding:13px 0;border-bottom:1px solid #252b3d}.item:last-child{border-bottom:0}
+.notice{padding:12px;border-radius:12px;background:#1a2131;color:#c7d0e8;font-size:13px;line-height:1.5}
+@media(max-width:520px){.balance{align-items:flex-start;flex-direction:column}}
 </style>
 </head>
 <body>
-<header><h1>Earnova 🚀</h1><p>Earn • Complete Tasks • Level Up</p></header>
 
-<main class="app">
-<section id="home" class="section active">
-<div class="card balance"><div><div class="muted">মোট ব্যালেন্স</div><strong>৳ <span id="balance">125.00</span></strong></div><span class="badge">Level <span id="levelTop">1</span></span></div>
-
-<div class="card grid">
-<div class="stat">আজকের আয়<b>৳ <span id="today">35.00</span></b></div>
-<div class="stat">Task আয়<b>৳ <span id="taskIncome">20.00</span></b></div>
-<div class="stat">Ad আয়<b>৳ <span id="adIncome">15.00</span></b></div>
-<div class="stat">Completed<b><span id="completed">3</span></b></div>
+<div id="loader" class="loader">
+  <div class="loaderbox">
+    <div class="logo">👑</div>
+    <div class="loading">LOADING...</div>
+    <div class="spinner"></div>
+  </div>
 </div>
 
-<div class="card"><h2>📺 Ads দেখে আয়</h2>
-<div class="ad"><div class="row"><div><b>Sponsored Ad</b><div class="muted">৩০ সেকেন্ডের বিজ্ঞাপন</div></div><button id="adBtn" onclick="watchAd()">Ad দেখুন</button></div></div>
-<div class="muted">আজ দেখা হয়েছে: <span id="adsSeen">0</span>/10</div></div>
 
-<div class="card"><h2>✅ Task করে আয়</h2>
-<div class="task"><div class="row"><div><b>Daily Check-in</b><div class="muted">আজকের check-in সম্পন্ন করুন</div></div><button onclick="claimTask(this,5)">৳5</button></div></div>
-<div class="task"><div class="row"><div><b>Profile Complete</b><div class="muted">Profile তথ্য সম্পূর্ণ করুন</div></div><button onclick="claimTask(this,10)">৳10</button></div></div>
-<div class="task"><div class="row"><div><b>Community Task</b><div class="muted">Task সম্পন্ন করলে reward পাবেন</div></div><button onclick="claimTask(this,5)">৳5</button></div></div></div>
+<div id="welcomeModal" style="display:none;position:fixed;inset:0;background:#0009;z-index:120;align-items:center;justify-content:center;padding:20px">
+  <div style="width:min(430px,100%);background:#111522;border:1px solid #30374c;border-radius:24px;padding:28px;text-align:center;box-shadow:0 20px 60px #0008">
+    <div style="font-size:64px">🎉</div>
+    <h2 style="font-size:28px;margin:10px 0;background:linear-gradient(90deg,#00e5ff,#ff3cac,#ffd166);-webkit-background-clip:text;color:transparent">Congratulations!</h2>
+    <p style="color:#c5cce0;font-size:16px">আপনার Earnova অ্যাকাউন্টে</p>
+    <div style="font-size:38px;font-weight:900;color:#35e0b0;margin:12px 0">৳20</div>
+    <p style="color:#98a2bb">Welcome Bonus হিসেবে যোগ হয়েছে।</p>
+    <button onclick="closeWelcome()" style="margin-top:10px;width:100%">শুরু করুন 🚀</button>
+  </div>
+</div>
+
+<header>
+  <h1>Earnova 🚀</h1>
+  <p>Earn • Complete Tasks • VIP Rewards</p>
+</header>
+
+<main class="app">
+
+<section id="home" class="section active">
+  <div class="card balance">
+    <div><div class="muted">মোট ব্যালেন্স</div><strong>৳ <span id="balance">125.00</span></strong></div>
+    <span class="badge">VIP <span id="levelTop">0</span></span>
+  </div>
+
+  <div class="card grid">
+    <div class="stat">আজকের আয়<b>৳ <span id="today">35.00</span></b></div>
+    <div class="stat">Task আয়<b>৳ <span id="taskIncome">20.00</span></b></div>
+    <div class="stat">Ad আয়<b>৳ <span id="adIncome">15.00</span></b></div>
+    <div class="stat">Completed<b><span id="completed">3</span></b></div>
+  </div>
+
+
+  <div class="card">
+    <h2>📊 Income Summary</h2>
+    <div class="grid">
+      <div class="stat">Welcome Bonus<b>৳ <span id="welcomeIncome">20.00</span></b></div>
+      <div class="stat">VIP/Reward Income<b>৳ <span id="vipIncome">0.00</span></b></div>
+      <div class="stat">Task Income<b>৳ <span id="taskIncome2">0.00</span></b></div>
+      <div class="stat">Ad Income<b>৳ <span id="adIncome2">0.00</span></b></div>
+    </div>
+    <p class="muted" style="margin-bottom:0">সব income একই Wallet balance-এর সাথে যুক্ত হবে।</p>
+  </div>
+
+  <div class="card">
+    <h2>📺 Ads দেখে আয়</h2>
+    <div class="level">
+      <div class="row">
+        <div><b>Sponsored Ad</b><div class="muted">বিজ্ঞাপন সম্পূর্ণ দেখলে reward</div></div>
+        <button id="adBtn" onclick="watchAd()">Ad দেখুন</button>
+      </div>
+    </div>
+    <div class="muted">আজ দেখা হয়েছে: <span id="adsSeen">0</span>/10</div>
+  </div>
+
+  <div class="card">
+    <h2>✅ Task করে আয়</h2>
+    <div class="level"><div class="row"><div><b>Daily Check-in</b><div class="muted">আজকের check-in</div></div><button onclick="claimTask(this,5)">৳5</button></div></div>
+    <div class="level"><div class="row"><div><b>Profile Complete</b><div class="muted">Profile সম্পূর্ণ করুন</div></div><button onclick="claimTask(this,10)">৳10</button></div></div>
+    <div class="level"><div class="row"><div><b>Community Task</b><div class="muted">Task সম্পন্ন করুন</div></div><button onclick="claimTask(this,5)">৳5</button></div></div>
+  </div>
 </section>
 
 <section id="levels" class="section">
-<div class="card"><h2>⭐ Level System</h2><p class="muted">Level বাড়লে eligible reward rate বাড়বে। Level বাড়লে আপনার reward rate বাড়বে।</p>
-<div class="level"><div class="row"><div><b>Level 1</b><div class="muted">Base reward rate</div></div><span class="badge">Current</span></div></div>
-<div class="level"><div class="row"><div><b>Level 2</b><div class="muted">Reward rate: 1.25×</div></div><button onclick="upgrade(2,199)">৳199</button></div></div>
-<div class="level"><div class="row"><div><b>Level 3</b><div class="muted">Reward rate: 1.50×</div></div><button onclick="upgrade(3,499)">৳499</button></div></div>
-<div class="level"><div class="row"><div><b>Level 4</b><div class="muted">Reward rate: 2.00×</div></div><button onclick="upgrade(4,999)">৳999</button></div></div>
-</div>
+  <div class="card">
+    <h2>👑 VIP Level</h2>
+    <p class="muted">VIP level অনুযায়ী reward rate বাড়তে পারে। চূড়ান্ত নিয়ম ও হিসাব Admin Panel থেকে নিয়ন্ত্রণ করা যাবে।</p>
+    <div id="levelsList"></div>
+  </div>
 </section>
 
 <section id="wallet" class="section">
-<div class="card"><h2>💰 Wallet</h2><div class="stat">Available balance<b>৳ <span id="walletBal">125.00</span></b></div><br>
-<label>Withdrawal method</label><select><option>bKash</option><option>Nagad</option></select>
-<label>Account number</label><input placeholder="01XXXXXXXXX">
-<label>Amount</label><input type="number" min="50" placeholder="Minimum ৳50">
-<button onclick="withdraw()">Withdraw Request</button>
-</div></section>
+  <div class="card">
+    <h2>💰 Wallet</h2>
+    <div class="stat">Available balance<b>৳ <span id="walletBal">125.00</span></b></div><br>
+    <label>Withdrawal method</label>
+    <select><option>bKash</option><option>Nagad</option></select>
+    <label>Account number</label><input placeholder="01XXXXXXXXX">
+    <label>Amount</label><input id="withdrawAmount" type="number" min="50" placeholder="Minimum ৳50">
+    <button onclick="withdraw()">Withdraw Request</button>
+  </div>
+</section>
 
-<section id="loan" class="section">
-<div class="card"><h2>📝 Apply for a Loan</h2>
-<label>Full Name</label><input placeholder="আপনার নাম">
-<label>Phone Number</label><input placeholder="01XXXXXXXXX">
-<label>Loan Amount</label><input type="number" placeholder="Amount">
-<label>Term</label><select><option>3 months</option><option>6 months</option><option>12 months</option></select>
-<button onclick="alert('Application submitted successfully.')">Submit Application</button>
-</div></section>
+<section id="profile" class="section">
+  <div class="card">
+    <div class="profile-head">
+      <div class="avatar">EA</div>
+      <div><h2 style="margin:0">Earnova User</h2><div class="muted">Member ID: EV-000001</div></div>
+    </div>
+  </div>
+  <div class="card">
+    <h2>👤 Profile</h2>
+    <div class="item"><span class="muted">নাম</span><br><b>Earnova User</b></div>
+    <div class="item"><span class="muted">VIP Level</span><br><b>VIP <span id="profileLevel">0</span></b></div>
+    <div class="item"><span class="muted">Reward Rate</span><br><b class="rate" id="profileRate">Base</b></div>
+    <div class="item"><span class="muted">মোট ব্যালেন্স</span><br><b>৳ <span id="profileBalance">125.00</span></b></div>
+  </div>
+  <div class="card">
+    <div class="notice">নতুন ইউজারের জন্য একবার ৳20 Welcome Bonus যোগ হবে। Welcome Bonus, Ad Income, Task Income ও VIP/Reward Income একই Wallet balance-এ যোগ হবে। VIP purchase, reward rate ও অন্যান্য নিয়ম Admin Panel/API-এর সেটিংস অনুযায়ী নিয়ন্ত্রণ করা যাবে।</div>
+  </div>
+</section>
+
 </main>
 
 <nav>
-<button onclick="show('home')">🏠 Home</button>
-<button onclick="show('levels')">⭐ Levels</button>
-<button onclick="show('wallet')">💰 Wallet</button>
-<button onclick="show('loan')">📝 Loan</button>
+  <button id="nav-home" class="active" onclick="show('home')">🏠 Home</button>
+  <button id="nav-levels" onclick="show('levels')">👑 VIP</button>
+  <button id="nav-wallet" onclick="show('wallet')">💰 Wallet</button>
+  <button id="nav-profile" onclick="show('profile')">👤 Profile</button>
 </nav>
 
 <script>
-let balance=125,today=35,taskIncome=20,adIncome=15,completed=3,adsSeen=0,level=1;
-const money=n=>n.toFixed(2);
-function render(){document.getElementById('balance').textContent=money(balance);document.getElementById('walletBal').textContent=money(balance);document.getElementById('today').textContent=money(today);document.getElementById('taskIncome').textContent=money(taskIncome);document.getElementById('adIncome').textContent=money(adIncome);document.getElementById('completed').textContent=completed;document.getElementById('adsSeen').textContent=adsSeen;document.getElementById('levelTop').textContent=level}
-function show(id){document.querySelectorAll('.section').forEach(x=>x.classList.remove('active'));document.getElementById(id).classList.add('active');scrollTo(0,0)}
-function watchAd(){if(adsSeen>=10)return alert('আজকের ad limit শেষ।');const b=document.getElementById('adBtn');b.disabled=true;b.textContent='Watching...';setTimeout(()=>{let r=1*level;balance+=r;today+=r;adIncome+=r;adsSeen++;b.disabled=false;b.textContent='Ad দেখুন';render();alert('Ad reward: ৳'+r.toFixed(2));},3000)}
-function claimTask(btn,reward){if(btn.disabled)return;btn.disabled=true;btn.textContent='Completed ✓';balance+=reward;today+=reward;taskIncome+=reward;completed++;render()}
-function upgrade(newLevel,price){if(newLevel<=level)return alert('আপনার বর্তমান level ইতিমধ্যে '+level+'.');if(!confirm('Level '+newLevel+' (৳'+price+') — চালু করবেন?'))return;level=newLevel;render();alert('Level upgrade সম্পন্ন হয়েছে।')}
-function withdraw(){if(balance<50)return alert('Minimum withdrawal ৳50.');alert('Withdrawal request সফলভাবে পাঠানো হয়েছে।')}
-render();
+/* ADMIN CONFIG: পরে Admin Panel/API থেকে এই data replace করা যাবে */
+const VIP_LEVELS = [
+  {level:1,price:150,rate:1.25},
+  {level:2,price:290,rate:1.35},
+  {level:3,price:380,rate:1.47},
+  {level:4,price:470,rate:2.09},
+  {level:5,price:560,rate:2.35}
+];
+
+const isNewUser = !localStorage.getItem('earnova_welcome_bonus');
+let balance=isNewUser?20:125,today=isNewUser?20:35,taskIncome=0,adIncome=0,vipIncome=0,completed=0,adsSeen=0,level=0;
+
+const money=n=>Number(n).toFixed(2);
+
+function render(){
+  document.getElementById('balance').textContent=money(balance);
+  document.getElementById('walletBal').textContent=money(balance);
+  document.getElementById('profileBalance').textContent=money(balance);
+  document.getElementById('today').textContent=money(today);
+  document.getElementById('taskIncome').textContent=money(taskIncome);
+  document.getElementById('adIncome').textContent=money(adIncome);
+  document.getElementById('completed').textContent=completed;
+  document.getElementById('adsSeen').textContent=adsSeen;
+  document.getElementById('levelTop').textContent=level;
+  document.getElementById('profileLevel').textContent=level;
+  const current=VIP_LEVELS.find(x=>x.level===level);
+  document.getElementById('profileRate').textContent=current ? current.rate+'% reward rate' : 'Base reward';
+  const w=document.getElementById('welcomeIncome'); if(w) w.textContent=isNewUser?'20.00':'20.00';
+  const vi=document.getElementById('vipIncome'); if(vi) vi.textContent=money(vipIncome);
+  const ti=document.getElementById('taskIncome2'); if(ti) ti.textContent=money(taskIncome);
+  const ai=document.getElementById('adIncome2'); if(ai) ai.textContent=money(adIncome);
+}
+
+function renderLevels(){
+  const box=document.getElementById('levelsList');
+  box.innerHTML=VIP_LEVELS.map(v=>{
+    const current=v.level===level;
+    const bought=v.level<=level;
+    return `<div class="level vip">
+      <div class="row">
+        <div><div class="vipname">VIP ${v.level}</div>
+        <div class="muted">Level price: ৳${v.price}</div>
+        <div class="rate">${v.rate}% reward rate</div></div>
+        ${current?'<span class="badge">Current</span>':bought?'<span class="badge">Active</span>':`<button onclick="upgrade(${v.level},${v.price})">Buy VIP</button>`}
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function show(id){
+  document.querySelectorAll('.section').forEach(x=>x.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.querySelectorAll('nav button').forEach(x=>x.classList.remove('active'));
+  document.getElementById('nav-'+id).classList.add('active');
+  if(id==='levels') renderLevels();
+  scrollTo(0,0);
+}
+
+function watchAd(){
+  if(adsSeen>=10)return alert('আজকের ad limit শেষ।');
+  const b=document.getElementById('adBtn');
+  b.disabled=true;b.textContent='Loading...';
+  setTimeout(()=>{
+    const current=VIP_LEVELS.find(x=>x.level===level);
+    const reward=current ? current.rate : 1;
+    balance+=reward;today+=reward;adIncome+=reward;vipIncome+=reward;adsSeen++;
+    b.disabled=false;b.textContent='Ad দেখুন';render();
+    alert('Reward: ৳'+money(reward));
+  },2200);
+}
+
+function claimTask(btn,reward){
+  if(btn.disabled)return;
+  btn.disabled=true;btn.textContent='Completed ✓';
+  const current=VIP_LEVELS.find(x=>x.level===level);
+  const finalReward=current ? reward*(current.rate/1.25) : reward;
+  balance+=finalReward;today+=finalReward;taskIncome+=finalReward;completed++;
+  render();
+}
+
+function upgrade(newLevel,price){
+  if(newLevel<=level)return;
+  if(newLevel!==level+1)return alert('আগের VIP level আগে চালু করুন।');
+  if(!confirm('VIP '+newLevel+' চালু করতে ৳'+price+' — Continue?'))return;
+  /* এখানে পরে real payment gateway/API যুক্ত হবে */
+  level=newLevel;
+  render();renderLevels();
+  alert('VIP '+newLevel+' selected. Payment verification পরে Admin Panel/API দিয়ে করা যাবে।');
+}
+
+function withdraw(){
+  const amount=Number(document.getElementById('withdrawAmount').value||0);
+  if(amount<50)return alert('Minimum withdrawal ৳50.');
+  if(amount>balance)return alert('Insufficient balance.');
+  alert('Withdrawal request পাঠানো হয়েছে।');
+}
+
+render();renderLevels();
+setTimeout(()=>document.getElementById('loader').classList.add('hide'),1600);
+
+function closeWelcome(){
+  document.getElementById('welcomeModal').style.display='none';
+  localStorage.setItem('earnova_welcome_bonus','1');
+}
+
+window.addEventListener('load',()=>{
+  if(isNewUser){
+    setTimeout(()=>{
+      document.getElementById('welcomeModal').style.display='flex';
+      render();
+    },1900);
+  }
+});
+
 </script>
 </body>
 </html>
