@@ -1,19 +1,95 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="bn">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Earnova Nexus</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Earnova 🚀</title>
 <style>
-*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#f5f7fb;color:#172033}.hero{background:linear-gradient(135deg,#0b7a53,#19a974);color:#fff;padding:48px 22px 60px;text-align:center}.hero h1{font-size:38px;margin:0 0 10px}.hero p{font-size:17px}.card{max-width:560px;margin:-28px auto 30px;background:#fff;border-radius:20px;padding:26px;box-shadow:0 10px 35px rgba(0,0,0,.12)}h2{margin-top:0}.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}label{display:block;font-size:14px;font-weight:bold;margin:12px 0 6px}input,select{width:100%;padding:13px;border:1px solid #d8dee8;border-radius:10px;font-size:15px}button{width:100%;border:0;border-radius:11px;padding:14px;background:#0b7a53;color:#fff;font-size:16px;font-weight:bold;margin-top:18px}.status{display:none;margin-top:15px;padding:12px;border-radius:10px;background:#e8f8f1;color:#08633f}.note{font-size:12px;color:#687386;line-height:1.5;margin-top:14px}footer{text-align:center;color:#7b8494;font-size:13px;padding:10px 20px 30px}@media(max-width:520px){.row{grid-template-columns:1fr}.hero h1{font-size:32px}}
-</style></head>
+*{box-sizing:border-box}body{margin:0;font-family:Arial,"Noto Sans Bengali",sans-serif;background:#f4f7f8;color:#14213d}
+header{background:linear-gradient(135deg,#079669,#14b87b);color:#fff;padding:28px 20px 70px;text-align:center}
+header h1{margin:0;font-size:38px}header p{margin:8px 0 0;font-size:17px}
+.app{max-width:760px;margin:-38px auto 30px;padding:0 14px}.card{background:#fff;border-radius:20px;padding:20px;margin-bottom:16px;box-shadow:0 5px 20px #00000010}
+.balance{display:flex;justify-content:space-between;align-items:center;gap:15px}.balance strong{font-size:30px;color:#078b61}
+.badge{background:#e8fff6;color:#087c59;padding:8px 12px;border-radius:20px;font-weight:700}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.stat{background:#f7faf9;padding:15px;border-radius:15px}.stat b{display:block;font-size:22px;margin-top:5px}
+h2{margin:0 0 15px;font-size:22px}.task,.ad,.level{border:1px solid #e5ece9;border-radius:15px;padding:15px;margin:10px 0}
+.row{display:flex;justify-content:space-between;align-items:center;gap:12px}.muted{color:#68737d;font-size:14px}
+button{border:0;border-radius:12px;padding:11px 16px;background:#078b61;color:#fff;font-weight:700;font-size:15px;cursor:pointer}
+button:disabled{background:#b8c3bf;cursor:not-allowed}.secondary{background:#eaf7f2;color:#087c59}
+input,select{width:100%;padding:13px;border:1px solid #d7dfdc;border-radius:12px;font-size:16px;margin:7px 0 12px}
+nav{position:sticky;bottom:0;background:#fff;border-top:1px solid #ddd;display:flex;justify-content:space-around;padding:10px;z-index:5}
+nav button{background:transparent;color:#44515b;padding:8px}.section{display:none}.section.active{display:block}
+@media(max-width:520px){.grid{grid-template-columns:1fr 1fr}.balance{align-items:flex-start;flex-direction:column}}
+</style>
+</head>
 <body>
-<section class="hero"><h1>Earnova 🚀</h1><p>Simple loan application portal</p></section>
-<main class="card"><h2>Apply for a Loan</h2><form id="loanForm">
-<label for="name">Full Name</label><input id="name" required placeholder="Enter your name">
-<label for="phone">Phone Number</label><input id="phone" required type="tel" placeholder="01XXXXXXXXX">
-<div class="row"><div><label for="amount">Loan Amount</label><input id="amount" required type="number" min="1" placeholder="Amount"></div><div><label for="term">Term</label><select id="term"><option>3 months</option><option>6 months</option><option>12 months</option></select></div></div>
-<button type="submit">Submit Application</button><div class="status" id="status">Application received for demo purposes. No money has been transferred.</div>
-<p class="note">Demo website only. Do not enter sensitive financial information. A real lending service requires appropriate legal, privacy, security, and financial compliance measures.</p></form></main>
-<footer>© 2026 Earnova Nexus</footer>
-<script>document.getElementById('loanForm').addEventListener('submit',function(e){e.preventDefault();document.getElementById('status').style.display='block';});</script>
-</body></html>
+<header><h1>Earnova 🚀</h1><p>Earn • Complete Tasks • Level Up</p></header>
+
+<main class="app">
+<section id="home" class="section active">
+<div class="card balance"><div><div class="muted">মোট ব্যালেন্স</div><strong>৳ <span id="balance">125.00</span></strong></div><span class="badge">Level <span id="levelTop">1</span></span></div>
+
+<div class="card grid">
+<div class="stat">আজকের আয়<b>৳ <span id="today">35.00</span></b></div>
+<div class="stat">Task আয়<b>৳ <span id="taskIncome">20.00</span></b></div>
+<div class="stat">Ad আয়<b>৳ <span id="adIncome">15.00</span></b></div>
+<div class="stat">Completed<b><span id="completed">3</span></b></div>
+</div>
+
+<div class="card"><h2>📺 Ads দেখে আয়</h2>
+<div class="ad"><div class="row"><div><b>Sponsored Ad</b><div class="muted">৩০ সেকেন্ডের বিজ্ঞাপন</div></div><button id="adBtn" onclick="watchAd()">Ad দেখুন</button></div></div>
+<div class="muted">আজ দেখা হয়েছে: <span id="adsSeen">0</span>/10</div></div>
+
+<div class="card"><h2>✅ Task করে আয়</h2>
+<div class="task"><div class="row"><div><b>Daily Check-in</b><div class="muted">আজকের check-in সম্পন্ন করুন</div></div><button onclick="claimTask(this,5)">৳5</button></div></div>
+<div class="task"><div class="row"><div><b>Profile Complete</b><div class="muted">Profile তথ্য সম্পূর্ণ করুন</div></div><button onclick="claimTask(this,10)">৳10</button></div></div>
+<div class="task"><div class="row"><div><b>Community Task</b><div class="muted">Task সম্পন্ন করলে reward পাবেন</div></div><button onclick="claimTask(this,5)">৳5</button></div></div></div>
+</section>
+
+<section id="levels" class="section">
+<div class="card"><h2>⭐ Level System</h2><p class="muted">Level বাড়লে eligible reward rate বাড়বে। Level বাড়লে আপনার reward rate বাড়বে।</p>
+<div class="level"><div class="row"><div><b>Level 1</b><div class="muted">Base reward rate</div></div><span class="badge">Current</span></div></div>
+<div class="level"><div class="row"><div><b>Level 2</b><div class="muted">Reward rate: 1.25×</div></div><button onclick="upgrade(2,199)">৳199</button></div></div>
+<div class="level"><div class="row"><div><b>Level 3</b><div class="muted">Reward rate: 1.50×</div></div><button onclick="upgrade(3,499)">৳499</button></div></div>
+<div class="level"><div class="row"><div><b>Level 4</b><div class="muted">Reward rate: 2.00×</div></div><button onclick="upgrade(4,999)">৳999</button></div></div>
+</div>
+</section>
+
+<section id="wallet" class="section">
+<div class="card"><h2>💰 Wallet</h2><div class="stat">Available balance<b>৳ <span id="walletBal">125.00</span></b></div><br>
+<label>Withdrawal method</label><select><option>bKash</option><option>Nagad</option></select>
+<label>Account number</label><input placeholder="01XXXXXXXXX">
+<label>Amount</label><input type="number" min="50" placeholder="Minimum ৳50">
+<button onclick="withdraw()">Withdraw Request</button>
+</div></section>
+
+<section id="loan" class="section">
+<div class="card"><h2>📝 Apply for a Loan</h2>
+<label>Full Name</label><input placeholder="আপনার নাম">
+<label>Phone Number</label><input placeholder="01XXXXXXXXX">
+<label>Loan Amount</label><input type="number" placeholder="Amount">
+<label>Term</label><select><option>3 months</option><option>6 months</option><option>12 months</option></select>
+<button onclick="alert('Application submitted successfully.')">Submit Application</button>
+</div></section>
+</main>
+
+<nav>
+<button onclick="show('home')">🏠 Home</button>
+<button onclick="show('levels')">⭐ Levels</button>
+<button onclick="show('wallet')">💰 Wallet</button>
+<button onclick="show('loan')">📝 Loan</button>
+</nav>
+
+<script>
+let balance=125,today=35,taskIncome=20,adIncome=15,completed=3,adsSeen=0,level=1;
+const money=n=>n.toFixed(2);
+function render(){document.getElementById('balance').textContent=money(balance);document.getElementById('walletBal').textContent=money(balance);document.getElementById('today').textContent=money(today);document.getElementById('taskIncome').textContent=money(taskIncome);document.getElementById('adIncome').textContent=money(adIncome);document.getElementById('completed').textContent=completed;document.getElementById('adsSeen').textContent=adsSeen;document.getElementById('levelTop').textContent=level}
+function show(id){document.querySelectorAll('.section').forEach(x=>x.classList.remove('active'));document.getElementById(id).classList.add('active');scrollTo(0,0)}
+function watchAd(){if(adsSeen>=10)return alert('আজকের ad limit শেষ।');const b=document.getElementById('adBtn');b.disabled=true;b.textContent='Watching...';setTimeout(()=>{let r=1*level;balance+=r;today+=r;adIncome+=r;adsSeen++;b.disabled=false;b.textContent='Ad দেখুন';render();alert('Ad reward: ৳'+r.toFixed(2));},3000)}
+function claimTask(btn,reward){if(btn.disabled)return;btn.disabled=true;btn.textContent='Completed ✓';balance+=reward;today+=reward;taskIncome+=reward;completed++;render()}
+function upgrade(newLevel,price){if(newLevel<=level)return alert('আপনার বর্তমান level ইতিমধ্যে '+level+'.');if(!confirm('Level '+newLevel+' (৳'+price+') — চালু করবেন?'))return;level=newLevel;render();alert('Level upgrade সম্পন্ন হয়েছে।')}
+function withdraw(){if(balance<50)return alert('Minimum withdrawal ৳50.');alert('Withdrawal request সফলভাবে পাঠানো হয়েছে।')}
+render();
+</script>
+</body>
+</html>
