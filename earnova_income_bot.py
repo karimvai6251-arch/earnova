@@ -361,7 +361,7 @@ async def addtask(update: Update, context: ContextTypes.DEFAULT_TYPE):
     conn.commit()
     await update.message.reply_text("✅ Task added.")
 
-async def main():
+def main():
     app = Application.builder().token(BOT_TOKEN).build()
     app.add_handler(CommandHandler("start", start))
     app.add_handler(CommandHandler("admin", admin))
@@ -370,9 +370,9 @@ async def main():
     app.add_handler(CommandHandler("addtask", addtask))
     app.add_handler(CallbackQueryHandler(callback))
     app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, text_message))
+
     print("Earnova bot running...")
-    await app.run_polling()
+    app.run_polling(drop_pending_updates=True, close_loop=False)
 
 if __name__ == "__main__":
-    import asyncio
-    asyncio.run(main())
+    main()
